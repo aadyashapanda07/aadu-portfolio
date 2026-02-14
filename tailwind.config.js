@@ -8,9 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0f172a", // Slate 900
-        accent: "#38bdf8", // Sky 400
-        secondary: "#64748b", // Slate 500
+        primary: "#0a0a0a",
+        accent: "#38bdf8",
+        secondary: "#64748b",
+        slate: {
+          800: '#141414',
+          850: '#0f0f0f',
+          900: '#0a0a0a',
+          950: '#000000',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
