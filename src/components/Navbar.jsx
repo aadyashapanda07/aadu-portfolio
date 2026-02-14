@@ -33,7 +33,7 @@ export default function Navbar({ onOpenContact }) {
                 <div className="flex justify-between items-center h-14">
                     <div className="flex-shrink-0 flex items-center">
                         <a href="#" className="font-heading font-bold text-xl tracking-tighter shadow-sm rounded-full overflow-hidden block">
-                            <img src="/favicon.jpg" alt="Logo" className="w-8 h-8 object-cover" />
+                            <img src="/logo.png" alt="Logo" className="w-8 h-8 object-cover rounded-full" />
                         </a>
                     </div>
 

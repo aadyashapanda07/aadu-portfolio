@@ -7,13 +7,17 @@ import Projects from "./components/Projects";
 import ContactModal from "./components/ContactModal";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
+import Chatbot from "./components/Chatbot";
+import CursorGlow from "./components/CursorGlow";
 
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <>
+      <CursorGlow />
       <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <Chatbot />
       <SmoothScroll>
         <div className="min-h-screen">
           <Navbar onOpenContact={() => setIsContactOpen(true)} />
@@ -32,3 +36,4 @@ function App() {
 
 
 export default App;
+

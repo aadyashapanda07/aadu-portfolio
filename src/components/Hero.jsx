@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import profileImg from "../assets/profile.jpg";
 
+
 export default function Hero({ onOpenContact }) {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -18,11 +19,11 @@ export default function Hero({ onOpenContact }) {
         <section ref={ref} id="home" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
             {/* Background Sync */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50 dark:to-slate-950 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50 dark:to-black z-10" />
                 <img
                     src={profileImg}
                     alt="Background Ambience"
-                    className="w-full h-full object-cover opacity-30 dark:opacity-40 blur-[100px] scale-150 transform"
+                    className="w-full h-full object-cover opacity-30 dark:opacity-20 blur-[100px] scale-150 transform"
                     style={{ maskImage: "radial-gradient(circle, black 40%, transparent 80%)" }}
                 />
             </div>
@@ -95,7 +96,7 @@ export default function Hero({ onOpenContact }) {
                 {/* Image Right */}
                 <div className="order-1 md:order-2 flex justify-center relative">
                     <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden rounded-[2rem] border-4 border-white/20 dark:border-white/10 shadow-2xl">
-                        <div className="absolute inset-0 bg-sky-500/20 blur-2xl transform rotate-6"></div>
+                        <div className="absolute inset-0 bg-sky-500/10 blur-2xl transform rotate-6"></div>
                         <img
                             src={profileImg}
                             alt={profile.name}
