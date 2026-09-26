@@ -116,20 +116,22 @@ export default function ContactModal({ isOpen, onClose }) {
                     </div>
 
                     {/* Quick Direct Email Action Card */}
-                    <div className="mb-6 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="mb-6 p-3.5 sm:p-4 rounded-2xl bg-sky-50/60 dark:bg-slate-850 border border-sky-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <a
-                            href={`mailto:${profile.email}`}
+                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="flex items-center gap-3 min-w-0 group cursor-pointer flex-1"
-                            title="Click to compose email"
+                            title="Click to open Gmail composer"
                         >
                             <div className="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                                 <Mail size={18} />
                             </div>
                             <div className="min-w-0">
-                                <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider flex items-center gap-1">
-                                    Direct Email <span className="text-sky-600 dark:text-sky-400 font-semibold">• Click to Open</span>
+                                <span className="text-[10px] uppercase font-bold text-sky-700 dark:text-sky-400 block tracking-wider flex items-center gap-1">
+                                    Direct Email • Click to Open in Gmail
                                 </span>
-                                <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 truncate block transition-colors underline decoration-dotted underline-offset-2">
+                                <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 truncate block transition-colors underline decoration-dotted underline-offset-2">
                                     {profile.email}
                                 </span>
                             </div>
@@ -141,11 +143,11 @@ export default function ContactModal({ isOpen, onClose }) {
                                 href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-sky-50 dark:hover:bg-slate-750 hover:text-sky-600 dark:hover:text-sky-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                                className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white transition-all flex items-center gap-1.5 cursor-pointer shadow-sm hover:shadow"
                                 title="Open in Gmail Web Browser"
                             >
                                 <ExternalLink size={13} />
-                                <span>Gmail</span>
+                                <span>Open Gmail</span>
                             </a>
 
                             {/* Copy button */}

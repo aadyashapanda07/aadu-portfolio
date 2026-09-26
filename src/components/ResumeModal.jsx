@@ -85,7 +85,9 @@ export default function ResumeModal({ isOpen, onClose }) {
 
                             <div className="mt-4 md:mt-0 flex flex-wrap justify-center md:justify-end gap-3 text-xs">
                                 <a
-                                    href={`mailto:${profile.email}`}
+                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
+                                    target="_blank"
+                                    rel="noreferrer"
                                     className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
                                 >
                                     <Mail size={13} /> {profile.email}

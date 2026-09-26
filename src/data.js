@@ -16,6 +16,7 @@ export const profile = {
     bio: "Computer Science student at NIST University with a strong foundation in modern full-stack development, AI systems, and interactive 3D web interfaces. Driven by architectural cleanliness, intuitive user experiences, and high-performance engineering.",
     location: "Berhampur, Odisha, India",
     email: "aadyashapanda07@gmail.com",
+    gmailUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=aadyashapanda07@gmail.com",
     github: "https://github.com/aadyashapanda07",
     linkedin: "https://www.linkedin.com/in/aadyasha-panda-098297374",
     resumeUrl: "/resume.pdf",
@@ -39,7 +40,7 @@ export const profile = {
         },
         {
             name: "Email",
-            url: "mailto:aadyashapanda07@gmail.com",
+            url: "https://mail.google.com/mail/?view=cm&fs=1&to=aadyashapanda07@gmail.com",
             icon: Mail,
         },
     ],
