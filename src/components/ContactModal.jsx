@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { profile } from "../data";
-import { Mail, X, Send, Copy, Check, Sparkles, User, AtSign, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, X, Send, Copy, Check, Sparkles, User, AtSign, CheckCircle2, AlertCircle, ExternalLink } from "lucide-react";
 
 export default function ContactModal({ isOpen, onClose }) {
     const [copied, setCopied] = useState(false);
@@ -115,41 +115,62 @@ export default function ContactModal({ isOpen, onClose }) {
                         </p>
                     </div>
 
-                    {/* Quick Copy Email Card */}
-                    <div className="mb-6 p-3 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-3 min-w-0">
-                            <div className="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0">
+                    {/* Quick Direct Email Action Card */}
+                    <div className="mb-6 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <a
+                            href={`mailto:${profile.email}`}
+                            className="flex items-center gap-3 min-w-0 group cursor-pointer flex-1"
+                            title="Click to compose email"
+                        >
+                            <div className="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                                 <Mail size={18} />
                             </div>
                             <div className="min-w-0">
-                                <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
-                                    Direct Email
+                                <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider flex items-center gap-1">
+                                    Direct Email <span className="text-sky-600 dark:text-sky-400 font-semibold">• Click to Open</span>
                                 </span>
-                                <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 truncate block">
+                                <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 truncate block transition-colors underline decoration-dotted underline-offset-2">
                                     {profile.email}
                                 </span>
                             </div>
-                        </div>
+                        </a>
 
-                        <button
-                            onClick={handleCopyEmail}
-                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${copied
-                                ? "bg-emerald-500 text-white"
-                                : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-750"
-                                }`}
-                        >
-                            {copied ? (
-                                <>
-                                    <Check size={14} />
-                                    <span>Copied!</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Copy size={14} />
-                                    <span>Copy</span>
-                                </>
-                            )}
-                        </button>
+                        <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                            {/* Open Web Gmail button */}
+                            <a
+                                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-sky-50 dark:hover:bg-slate-750 hover:text-sky-600 dark:hover:text-sky-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                                title="Open in Gmail Web Browser"
+                            >
+                                <ExternalLink size={13} />
+                                <span>Gmail</span>
+                            </a>
+
+                            {/* Copy button */}
+                            <button
+                                type="button"
+                                onClick={handleCopyEmail}
+                                className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${copied
+                                    ? "bg-emerald-500 text-white"
+                                    : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-750"
+                                    }`}
+                                title="Copy Email to Clipboard"
+                            >
+                                {copied ? (
+                                    <>
+                                        <Check size={14} />
+                                        <span>Copied!</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Copy size={14} />
+                                        <span>Copy</span>
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
 
                     {/* Form Success State */}
@@ -282,7 +303,7 @@ export default function ContactModal({ isOpen, onClose }) {
                                 <a
                                     key={social.name}
                                     href={social.url}
-                                    target="_blank"
+                                    target={social.url.startsWith("mailto:") ? undefined : "_blank"}
                                     rel="noopener noreferrer"
                                     className="p-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all shadow-sm"
                                     aria-label={social.name}

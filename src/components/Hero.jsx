@@ -157,7 +157,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                                 <a
                                     key={item.name}
                                     href={item.url}
-                                    target="_blank"
+                                    target={item.url.startsWith("mailto:") ? undefined : "_blank"}
                                     rel="noreferrer"
                                     className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all hover:scale-110 shadow-sm"
                                     aria-label={item.name}
