@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, User } from "lucide-react";
+import { MessageCircle, X, Send, User, Sparkles, RotateCcw } from "lucide-react";
 import { sendMessage, resetChat } from "../lib/gemini";
+import { chatSuggestions } from "../data";
 
 const WELCOME_MESSAGE = {
     role: "ai",
-    text: "Hey there! 👋 I'm Aadyasha's AI assistant. Ask me anything about her skills, projects, education, or career — I'm happy to help!",
+    text: "Hey there! 👋 I'm Aadyasha's AI assistant. Ask me anything about her projects, technical skills, education at NIST, or internship availability!",
 };
 
 export default function Chatbot() {
@@ -30,8 +31,8 @@ export default function Chatbot() {
         }
     }, [isOpen]);
 
-    const handleSend = async () => {
-        const trimmed = input.trim();
+    const handleSendText = async (textToSend) => {
+        const trimmed = (textToSend || input).trim();
         if (!trimmed || isTyping) return;
 
         const userMessage = { role: "user", text: trimmed };
@@ -47,7 +48,7 @@ export default function Chatbot() {
                 ...prev,
                 {
                     role: "ai",
-                    text: "Sorry, something went wrong. Please try again!",
+                    text: "Sorry, I ran into a network hiccup. You can also reach out to Aadyasha directly at aadyashapanda07@gmail.com!",
                 },
             ]);
         } finally {
@@ -58,16 +59,8 @@ export default function Chatbot() {
     const handleKeyDown = (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            handleSend();
+            handleSendText(input);
         }
-    };
-
-    const handleClose = () => {
-        setIsOpen(false);
-    };
-
-    const handleOpen = () => {
-        setIsOpen(true);
     };
 
     const handleReset = () => {
@@ -77,26 +70,32 @@ export default function Chatbot() {
 
     return (
         <>
-            {/* Floating Chat Bubble */}
+            {/* Floating Chat Bubble Button */}
             <AnimatePresence>
                 {!isOpen && (
                     <motion.button
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={handleOpen}
-                        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 dark:from-sky-400 dark:to-blue-500 text-white shadow-lg shadow-sky-500/30 dark:shadow-sky-400/20 flex items-center justify-center chatbot-pulse cursor-pointer"
-                        aria-label="Open AI Chat"
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.92 }}
+                        onClick={() => setIsOpen(true)}
+                        className="fixed bottom-6 right-6 z-50 p-1.5 rounded-full bg-gradient-to-tr from-sky-600 to-indigo-600 text-white shadow-xl shadow-sky-500/30 flex items-center justify-center cursor-pointer chatbot-pulse group"
+                        aria-label="Ask Aadyasha's AI"
                         id="chatbot-bubble"
                     >
-                        <img src="/logo.png" alt="Chat" className="w-full h-full object-cover rounded-full" />
+                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/80">
+                            <img src="/logo.png" alt="Aadyasha AI" className="w-full h-full object-cover" />
+                        </div>
+                        {/* Tooltip on hover */}
+                        <span className="absolute right-16 px-3 py-1.5 rounded-xl bg-slate-900/90 text-white text-xs font-medium whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                            Ask Aadyasha's AI ✨
+                        </span>
                     </motion.button>
                 )}
             </AnimatePresence>
 
-            {/* Chat Panel */}
+            {/* Chatbot Window */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -104,154 +103,136 @@ export default function Chatbot() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-48px)] h-[520px] max-h-[calc(100vh-48px)] flex flex-col rounded-3xl border border-white/20 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/90 backdrop-blur-xl shadow-2xl shadow-black/10 dark:shadow-black/30 overflow-hidden"
+                        className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-32px)] h-[560px] max-h-[calc(100vh-48px)] flex flex-col rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl shadow-2xl overflow-hidden"
                         id="chatbot-panel"
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-r from-sky-500/10 to-blue-500/10 dark:from-sky-400/10 dark:to-blue-500/10">
+                        <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-850/70">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 dark:from-sky-400 dark:to-blue-500 flex items-center justify-center shadow-md shadow-sky-500/20 overflow-hidden">
-                                    <img src="/logo.png" alt="AI Avatar" className="w-full h-full object-cover" />
+                                <div className="w-9 h-9 rounded-full overflow-hidden border border-sky-500/40 shrink-0">
+                                    <img src="/logo.png" alt="Aadyasha AI" className="w-full h-full object-cover" />
                                 </div>
                                 <div>
-                                    <h3 className="font-heading font-bold text-sm text-slate-900 dark:text-white leading-tight">
-                                        Aadyasha's AI
+                                    <h3 className="font-heading font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
+                                        <span>Aadyasha's AI</span>
+                                        <Sparkles size={13} className="text-sky-500" />
                                     </h3>
                                     <p className="text-[11px] text-slate-500 dark:text-slate-400">
                                         Powered by Gemini
                                     </p>
                                 </div>
                             </div>
+
                             <div className="flex items-center gap-1">
                                 <button
                                     onClick={handleReset}
-                                    className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                                    className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                                     title="Reset conversation"
                                     aria-label="Reset conversation"
                                 >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                                        <path d="M3 3v5h5" />
-                                    </svg>
+                                    <RotateCcw size={16} />
                                 </button>
                                 <button
-                                    onClick={handleClose}
-                                    className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
-                                    aria-label="Close chat"
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                                    aria-label="Close Chatbot"
                                 >
                                     <X size={18} />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Messages */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-3 chatbot-scrollbar">
+                        {/* Messages Feed */}
+                        <div className="flex-1 overflow-y-auto p-4 space-y-3.5 chatbot-scrollbar">
                             {messages.map((msg, i) => (
                                 <motion.div
                                     key={i}
                                     initial={{
                                         opacity: 0,
-                                        x: msg.role === "user" ? 20 : -20,
-                                        scale: 0.95,
+                                        x: msg.role === "user" ? 15 : -15,
                                     }}
-                                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                                    transition={{
-                                        type: "spring",
-                                        damping: 20,
-                                        stiffness: 300,
-                                        delay: msg.role === "ai" ? 0.05 : 0,
-                                    }}
-                                    className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"
-                                        }`}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.25 }}
+                                    className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}
                                 >
-                                    {/* Avatar */}
+                                    {/* Icon Avatar */}
                                     {msg.role === "user" ? (
-                                        <div className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5 bg-sky-500/20 dark:bg-sky-400/20">
-                                            <User size={14} className="text-sky-600 dark:text-sky-400" />
+                                        <div className="w-7 h-7 rounded-full flex items-center justify-center bg-sky-100 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
+                                            <User size={14} />
                                         </div>
                                     ) : (
-                                        <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            transition={{ type: "spring", damping: 15, stiffness: 400, delay: 0.1 }}
-                                            className="flex-shrink-0 w-7 h-7 rounded-full overflow-hidden shadow-sm shadow-sky-500/20 mt-0.5"
-                                        >
+                                        <div className="w-7 h-7 rounded-full overflow-hidden border border-sky-400/40 shrink-0 mt-0.5 shadow-sm">
                                             <img src="/logo.png" alt="AI" className="w-full h-full object-cover" />
-                                        </motion.div>
+                                        </div>
                                     )}
 
-                                    {/* Message Bubble */}
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.3, delay: msg.role === "ai" ? 0.15 : 0 }}
-                                        className={`max-w-[75%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.role === "user"
-                                            ? "bg-gradient-to-br from-sky-500 to-blue-600 dark:from-sky-400 dark:to-blue-500 text-white rounded-tr-md shadow-md shadow-sky-500/15"
-                                            : "bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 rounded-tl-md border border-slate-200/50 dark:border-slate-700/30"
+                                    {/* Bubble */}
+                                    <div
+                                        className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-wrap ${msg.role === "user"
+                                            ? "bg-sky-600 text-white rounded-tr-sm shadow-sm"
+                                            : "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tl-sm border border-slate-200/70 dark:border-slate-700/50"
                                             }`}
                                     >
                                         {msg.text}
-                                    </motion.div>
+                                    </div>
                                 </motion.div>
                             ))}
 
                             {/* Typing Indicator */}
                             {isTyping && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 8 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="flex gap-2.5"
-                                >
-                                    <motion.div
-                                        animate={{ scale: [1, 1.1, 1] }}
-                                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                                        className="flex-shrink-0 w-7 h-7 rounded-full overflow-hidden shadow-sm shadow-sky-500/20 mt-0.5"
-                                    >
+                                <div className="flex gap-2.5">
+                                    <div className="w-7 h-7 rounded-full overflow-hidden border border-sky-400/40 shrink-0 mt-0.5">
                                         <img src="/logo.png" alt="AI" className="w-full h-full object-cover" />
-                                    </motion.div>
-                                    <div className="bg-slate-100 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700/30 rounded-2xl rounded-tl-md px-4 py-3 flex items-center gap-1.5">
+                                    </div>
+                                    <div className="bg-slate-100 dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/50 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5">
                                         <span className="typing-dot" />
                                         <span className="typing-dot" style={{ animationDelay: "0.15s" }} />
                                         <span className="typing-dot" style={{ animationDelay: "0.3s" }} />
                                     </div>
-                                </motion.div>
+                                </div>
                             )}
 
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* Input Bar */}
-                        <div className="p-3 border-t border-slate-200/50 dark:border-slate-700/50 bg-white/50 dark:bg-slate-900/50">
-                            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/60 rounded-2xl px-4 py-2 border border-slate-200/50 dark:border-slate-700/30 focus-within:border-sky-400 dark:focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-400/20 transition-all">
+                        {/* Quick Suggestion Chips */}
+                        <div className="px-3 pt-2 pb-1 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+                            <div className="flex gap-1.5 overflow-x-auto pb-1.5 custom-scrollbar">
+                                {chatSuggestions.map((promptText, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => handleSendText(promptText)}
+                                        disabled={isTyping}
+                                        className="text-[11px] px-2.5 py-1 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200 dark:border-slate-700 whitespace-nowrap shrink-0 transition-colors shadow-2xs hover:shadow-xs cursor-pointer disabled:opacity-50"
+                                    >
+                                        {promptText}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Input Area */}
+                        <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/80 rounded-2xl px-3.5 py-2 border border-slate-200 dark:border-slate-700 focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20 transition-all">
                                 <input
                                     ref={inputRef}
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyDown}
-                                    placeholder="Ask about Aadyasha..."
-                                    className="flex-1 bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none"
+                                    placeholder="Ask anything about Aadyasha..."
+                                    className="flex-1 bg-transparent text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 outline-none"
                                     disabled={isTyping}
                                     id="chatbot-input"
                                 />
                                 <button
-                                    onClick={handleSend}
+                                    onClick={() => handleSendText(input)}
                                     disabled={!input.trim() || isTyping}
-                                    className="p-1.5 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 dark:from-sky-400 dark:to-blue-500 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-md hover:shadow-sky-500/20 active:scale-95 transition-all cursor-pointer"
+                                    className="p-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                                     aria-label="Send message"
                                     id="chatbot-send"
                                 >
-                                    <Send size={16} />
+                                    <Send size={15} />
                                 </button>
                             </div>
                         </div>

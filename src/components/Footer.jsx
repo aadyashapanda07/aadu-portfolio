@@ -1,15 +1,70 @@
 import { profile } from "../data";
+import { ArrowUp, Github, Linkedin, Mail, Heart } from "lucide-react";
 
 export default function Footer() {
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
-        <footer className="py-8 border-t border-slate-200 dark:border-slate-800 mt-20">
-            <div className="max-w-7xl mx-auto px-4 text-center">
-                <p className="text-slate-600 dark:text-slate-500 text-sm">
-                    © {new Date().getFullYear()} {profile.name}. All rights reserved.
-                </p>
-                <p className="text-slate-500 dark:text-slate-600 text-xs mt-2">
-                    Built with React, Tailwind CSS & Framer Motion
-                </p>
+        <footer className="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-md pt-12 pb-8 mt-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-200/60 dark:border-slate-800/60">
+                    {/* Brand */}
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full overflow-hidden border border-sky-500/40">
+                            <img src="/logo.png" alt="Aadyasha Logo" className="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <span className="font-heading font-bold text-base text-slate-900 dark:text-white">
+                                {profile.name}
+                            </span>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
+                                B.Tech CSE @ NIST University
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Quick Nav */}
+                    <div className="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <a href="#home" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Home</a>
+                        <a href="#about" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">About</a>
+                        <a href="#skills" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Skills</a>
+                        <a href="#projects" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Projects</a>
+                    </div>
+
+                    {/* Socials & Back To Top */}
+                    <div className="flex items-center gap-3">
+                        {profile.social.map((item) => (
+                            <a
+                                key={item.name}
+                                href={item.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all"
+                                aria-label={item.name}
+                            >
+                                <item.icon size={16} />
+                            </a>
+                        ))}
+
+                        <button
+                            onClick={scrollToTop}
+                            className="p-2 rounded-xl bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200 dark:border-slate-800 transition-all cursor-pointer"
+                            aria-label="Back to top"
+                            title="Back to top"
+                        >
+                            <ArrowUp size={16} />
+                        </button>
+                    </div>
+                </div>
+
+                <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-500 gap-3">
+                    <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+                    <p className="flex items-center gap-1">
+                        Crafted with <Heart size={13} className="text-red-500 fill-red-500 inline" /> using React 19, Tailwind CSS & Framer Motion
+                    </p>
+                </div>
             </div>
         </footer>
     );
