@@ -15,6 +15,7 @@ export const profile = {
     tagline: "Engineering scalable web platforms, intelligent AI tools, and immersive digital experiences.",
     bio: "Computer Science student at NIST University with a strong foundation in modern full-stack development, AI systems, and interactive 3D web interfaces. Driven by architectural cleanliness, intuitive user experiences, and high-performance engineering.",
     location: "Berhampur, Odisha, India",
+    phone: "+91 7326880984",
     email: "aadyashapanda07@gmail.com",
     gmailUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=aadyashapanda07@gmail.com",
     github: "https://github.com/aadyashapanda07",
@@ -192,21 +193,50 @@ export const projects = [
     }
 ];
 
+export const experience = [
+    {
+        role: "AI/ML Intern",
+        company: "csm.tech",
+        location: "Bhubaneswar, Odisha",
+        period: "June 2026 – Present",
+        description: [
+            "Working in the Delivery Department on AI/ML projects under mentorship from industry professionals.",
+            "Gaining hands-on experience with data analysis and machine learning fundamentals."
+        ]
+    }
+];
+
 export const education = [
     {
-        degree: "B.Tech in Computer Science & Engineering",
+        degree: "B.Tech. in Computer Science and Engineering",
         institution: "NIST University",
-        year: "2023 – 2027",
-        details: "Focus: Data Structures & Algorithms, Full Stack Web Development, Database Management Systems, AI Principles.",
+        location: "Berhampur, Odisha",
+        year: "Aug. 2023 – May 2027",
+        details: "CGPA: 7.63 / 10 | Focus: Modern Full-Stack Development, AI/NLP, Data Structures & Algorithms, DBMS.",
         badge: "Undergraduate"
     },
     {
-        degree: "Higher Secondary (Class XII)",
-        institution: "SSVM NK Nagar",
+        degree: "SSVM Higher Secondary School (Class XII)",
+        institution: "N.K Nagar, Berhampur, Odisha",
+        location: "Berhampur, Odisha",
         year: "2022",
-        details: "Score: CGPA 8.5 / 10 | Major in Science (Physics, Chemistry, Mathematics)",
+        details: "Score: 83% | Major in Science",
         badge: "Higher Secondary"
     },
+    {
+        degree: "SSVM School (Class X)",
+        institution: "N.K Nagar, Berhampur, Odisha",
+        location: "Berhampur, Odisha",
+        year: "2020",
+        details: "Score: 92%",
+        badge: "Secondary"
+    }
+];
+
+export const extracurricular = [
+    "NSS Member, National Service Scheme, NIST University",
+    "District-Level Basketball Player, Competed in district-level tournaments",
+    "School Guide, Mentored junior students during school tenure"
 ];
 
 export const highlights = [

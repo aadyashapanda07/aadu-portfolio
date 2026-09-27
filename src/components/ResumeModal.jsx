@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, ExternalLink, Printer, Mail, MapPin, Linkedin, Github } from "lucide-react";
-import { profile, skills, projects, education } from "../data";
+import { profile, skills, projects, education, experience, extracurricular } from "../data";
 import { openEmailClient } from "../lib/email";
 
 export default function ResumeModal({ isOpen, onClose }) {
@@ -42,6 +42,16 @@ export default function ResumeModal({ isOpen, onClose }) {
                         </div>
 
                         <div className="flex items-center gap-2">
+                            <a
+                                href={profile.resumeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+                                title="Open Full PDF in New Tab"
+                            >
+                                <ExternalLink size={14} />
+                                View PDF
+                            </a>
                             <button
                                 onClick={handlePrint}
                                 className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
@@ -53,14 +63,16 @@ export default function ResumeModal({ isOpen, onClose }) {
                             <a
                                 href={profile.resumeUrl}
                                 download="Aadyasha_Panda_Resume.pdf"
-                                className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-semibold bg-sky-600 hover:bg-sky-500 text-white transition-all shadow-sm hover:shadow"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-semibold bg-sky-600 hover:bg-sky-500 text-white transition-all shadow-sm hover:shadow cursor-pointer"
                             >
                                 <Download size={14} />
                                 Download PDF
                             </a>
                             <button
                                 onClick={onClose}
-                                className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ml-1"
+                                className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ml-1 cursor-pointer"
                                 aria-label="Close Resume"
                             >
                                 <X size={20} />
@@ -86,6 +98,12 @@ export default function ResumeModal({ isOpen, onClose }) {
 
                             <div className="mt-4 md:mt-0 flex flex-wrap justify-center md:justify-end gap-3 text-xs">
                                 <a
+                                    href="tel:7326880984"
+                                    className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 font-medium"
+                                >
+                                    <span>📞 7326880984</span>
+                                </a>
+                                <a
                                     href={`mailto:${profile.email}`}
                                     onClick={openEmailClient}
                                     className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 cursor-pointer"
@@ -93,12 +111,12 @@ export default function ResumeModal({ isOpen, onClose }) {
                                     <Mail size={13} /> {profile.email}
                                 </a>
                                 <a
-                                    href={profile.linkedin}
+                                    href="https://www.aadyasha.in"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
                                 >
-                                    <Linkedin size={13} /> LinkedIn
+                                    <span>🌐 aadyasha.in</span>
                                 </a>
                                 <a
                                     href={profile.github}
@@ -107,6 +125,14 @@ export default function ResumeModal({ isOpen, onClose }) {
                                     className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
                                 >
                                     <Github size={13} /> GitHub
+                                </a>
+                                <a
+                                    href={profile.linkedin}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
+                                >
+                                    <Linkedin size={13} /> LinkedIn
                                 </a>
                             </div>
                         </div>
@@ -147,6 +173,37 @@ export default function ResumeModal({ isOpen, onClose }) {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Work Experience */}
+                        {experience && experience.length > 0 && (
+                            <div>
+                                <h2 className="text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-4">
+                                    Experience
+                                </h2>
+                                <div className="space-y-4">
+                                    {experience.map((exp, idx) => (
+                                        <div key={idx} className="border-l-2 border-sky-500/40 pl-4 py-1">
+                                            <div className="flex flex-wrap items-baseline justify-between gap-2">
+                                                <h3 className="font-bold text-slate-900 dark:text-white text-base">
+                                                    {exp.role} <span className="text-xs font-semibold text-sky-600 dark:text-sky-400">@ {exp.company}</span>
+                                                </h3>
+                                                <span className="text-xs font-semibold px-2.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">
+                                                    {exp.period}
+                                                </span>
+                                            </div>
+                                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                                {exp.location}
+                                            </p>
+                                            <ul className="mt-2 space-y-1 list-disc list-inside text-xs text-slate-600 dark:text-slate-300">
+                                                {exp.description.map((d, dIdx) => (
+                                                    <li key={dIdx}>{d}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {/* Technical Skills */}
                         <div>
@@ -197,6 +254,20 @@ export default function ResumeModal({ isOpen, onClose }) {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Extracurricular Activities */}
+                        {extracurricular && extracurricular.length > 0 && (
+                            <div>
+                                <h2 className="text-sm font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-3">
+                                    Extracurricular Activities
+                                </h2>
+                                <ul className="space-y-1.5 list-disc list-inside text-xs text-slate-600 dark:text-slate-300">
+                                    {extracurricular.map((item, idx) => (
+                                        <li key={idx}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
 
                         {/* Bottom note */}
                         <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-xs text-slate-500">
