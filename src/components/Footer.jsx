@@ -1,5 +1,6 @@
 import { profile } from "../data";
 import { ArrowUp, Github, Linkedin, Mail, Heart } from "lucide-react";
+import { openEmailClient } from "../lib/email";
 
 export default function Footer() {
     const scrollToTop = () => {
@@ -39,9 +40,10 @@ export default function Footer() {
                             <a
                                 key={item.name}
                                 href={item.url}
+                                onClick={item.name.toLowerCase() === "email" ? openEmailClient : undefined}
                                 target={item.url.startsWith("mailto:") ? undefined : "_blank"}
                                 rel="noreferrer"
-                                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all"
+                                className="p-2 rounded-xl bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all cursor-pointer"
                                 aria-label={item.name}
                             >
                                 <item.icon size={16} />

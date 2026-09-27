@@ -40,7 +40,7 @@ export const profile = {
         },
         {
             name: "Email",
-            url: "https://mail.google.com/mail/?view=cm&fs=1&to=aadyashapanda07@gmail.com",
+            url: "mailto:aadyashapanda07@gmail.com",
             icon: Mail,
         },
     ],

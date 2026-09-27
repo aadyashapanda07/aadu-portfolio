@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, ExternalLink, Printer, Mail, MapPin, Linkedin, Github } from "lucide-react";
 import { profile, skills, projects, education } from "../data";
+import { openEmailClient } from "../lib/email";
 
 export default function ResumeModal({ isOpen, onClose }) {
     if (!isOpen) return null;
@@ -85,10 +86,9 @@ export default function ResumeModal({ isOpen, onClose }) {
 
                             <div className="mt-4 md:mt-0 flex flex-wrap justify-center md:justify-end gap-3 text-xs">
                                 <a
-                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
+                                    href={`mailto:${profile.email}`}
+                                    onClick={openEmailClient}
+                                    className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 cursor-pointer"
                                 >
                                     <Mail size={13} /> {profile.email}
                                 </a>

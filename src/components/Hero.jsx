@@ -3,6 +3,7 @@ import { ArrowRight, FileText, Mail, Sparkles, MapPin, CheckCircle2 } from "luci
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { profile } from "../data";
 import profileImg from "../assets/profile.jpg";
+import { openEmailClient } from "../lib/email";
 
 export default function Hero({ onOpenContact, onOpenResume }) {
     const ref = useRef(null);
@@ -157,9 +158,10 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                                 <a
                                     key={item.name}
                                     href={item.url}
+                                    onClick={item.name.toLowerCase() === "email" ? openEmailClient : undefined}
                                     target={item.url.startsWith("mailto:") ? undefined : "_blank"}
                                     rel="noreferrer"
-                                    className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all hover:scale-110 shadow-sm"
+                                    className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-white hover:bg-sky-600 dark:hover:bg-sky-500 transition-all hover:scale-110 shadow-sm cursor-pointer"
                                     aria-label={item.name}
                                     title={item.name}
                                 >
