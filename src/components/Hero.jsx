@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, FileText, Mail, Sparkles, MapPin, CheckCircle2 } from "lucide-react";
+import { ArrowRight, FileText, Mail } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { profile } from "../data";
 import profileImg from "../assets/profile.jpg";
@@ -44,20 +44,6 @@ export default function Hero({ onOpenContact, onOpenResume }) {
             >
                 {/* Left Column (Content) */}
                 <div className="text-center lg:text-left lg:col-span-7 order-2 lg:order-1">
-                    {/* Status Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-medium mb-6 shadow-sm"
-                    >
-                        <span className="relative flex h-2.5 w-2.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                        </span>
-                        <span>{profile.availability}</span>
-                    </motion.div>
-
                     {/* Main Headline with Animated Role */}
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -172,7 +158,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                     </motion.div>
                 </div>
 
-                {/* Right Column (Hero Image & Floating Badges) */}
+                {/* Right Column (Hero Image) */}
                 <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center relative">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -181,44 +167,17 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                         className="relative"
                     >
                         {/* Ambient Aura */}
-                        <div className="absolute -inset-4 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[2.8rem] opacity-30 dark:opacity-40 blur-2xl animate-pulse" />
+                        <div className="absolute -inset-4 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[3rem] opacity-30 dark:opacity-40 blur-2xl animate-pulse" />
 
                         {/* Profile Image Frame */}
-                        <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-[2.5rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
+                        <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[26rem] md:h-[26rem] lg:w-[28rem] lg:h-[28rem] xl:w-[30rem] xl:h-[30rem] rounded-[2.8rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
                             <img
                                 src={profileImg}
                                 alt={profile.name}
-                                className="w-full h-full object-cover object-[50%_25%] scale-110 transition-transform duration-700 hover:scale-115"
+                                className="w-full h-full object-cover object-[50%_25%] scale-115 transition-transform duration-700 hover:scale-120"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
                         </div>
-
-                        {/* Floating Badge 1: Top Right */}
-                        <motion.div
-                            animate={{ y: [0, -8, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/40 dark:border-slate-700/60 shadow-xl flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800 dark:text-white"
-                        >
-                            <span className="p-1 rounded-lg bg-sky-500/20 text-sky-600 dark:text-sky-400">
-                                <Sparkles size={16} />
-                            </span>
-                            <span>Full-Stack & AI</span>
-                        </motion.div>
-
-                        {/* Floating Badge 2: Bottom Left */}
-                        <motion.div
-                            animate={{ y: [0, 8, 0] }}
-                            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute -bottom-3 -left-3 sm:-bottom-5 sm:-left-5 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/40 dark:border-slate-700/60 shadow-xl flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800 dark:text-white"
-                        >
-                            <span className="p-1 rounded-lg bg-indigo-500/20 text-indigo-600 dark:text-indigo-400">
-                                <CheckCircle2 size={16} />
-                            </span>
-                            <div>
-                                <span className="block text-[10px] text-slate-400 uppercase tracking-wider font-bold">Campus</span>
-                                <span>NIST University</span>
-                            </div>
-                        </motion.div>
                     </motion.div>
                 </div>
             </motion.div>
