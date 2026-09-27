@@ -1,4 +1,19 @@
 {
+    "headers": [
+        {
+            "source": "/(.*)\\.pdf",
+            "headers": [
+                {
+                    "key": "Content-Disposition",
+                    "value": "inline; filename=\"Aadyasha Panda.pdf\""
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/pdf"
+                }
+            ]
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",

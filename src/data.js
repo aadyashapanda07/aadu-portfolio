@@ -20,7 +20,7 @@ export const profile = {
     gmailUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=aadyashapanda07@gmail.com",
     github: "https://github.com/aadyashapanda07",
     linkedin: "https://www.linkedin.com/in/aadyasha-panda-098297374",
-    resumeUrl: "/resume.pdf",
+    resumeUrl: "/Aadyasha%20Panda.pdf",
     availability: "Available for Internships & Projects",
     stats: [
         { label: "Featured Projects", value: "5" },

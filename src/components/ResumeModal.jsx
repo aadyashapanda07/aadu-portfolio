@@ -62,9 +62,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                             </button>
                             <a
                                 href={profile.resumeUrl}
-                                download="Aadyasha_Panda_Resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                download="Aadyasha Panda.pdf"
                                 className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-semibold bg-sky-600 hover:bg-sky-500 text-white transition-all shadow-sm hover:shadow cursor-pointer"
                             >
                                 <Download size={14} />
