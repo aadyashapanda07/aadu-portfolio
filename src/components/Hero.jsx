@@ -134,18 +134,20 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="pt-6 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-6"
                     >
-                        <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center sm:text-left w-full sm:w-auto">
-                            <div>
-                                <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 dark:text-white">6+</div>
-                                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Projects Built</div>
+                        <div className="flex items-center justify-between sm:justify-start gap-4 sm:gap-6 w-full sm:w-auto">
+                            <div className="shrink-0 text-center sm:text-left">
+                                <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 dark:text-white whitespace-nowrap">6+</div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">Projects Built</div>
                             </div>
-                            <div>
-                                <div className="text-2xl sm:text-3xl font-bold font-heading text-sky-600 dark:text-sky-400">15+</div>
-                                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Tech Skills</div>
+                            <div className="w-px h-8 bg-slate-200 dark:bg-slate-800 hidden xs:block" />
+                            <div className="shrink-0 text-center sm:text-left">
+                                <div className="text-2xl sm:text-3xl font-bold font-heading text-sky-600 dark:text-sky-400 whitespace-nowrap">15+</div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">Tech Skills</div>
                             </div>
-                            <div>
-                                <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 dark:text-white">NIST '27</div>
-                                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">B.Tech CSE</div>
+                            <div className="w-px h-8 bg-slate-200 dark:bg-slate-800 hidden xs:block" />
+                            <div className="shrink-0 text-center sm:text-left">
+                                <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 dark:text-white whitespace-nowrap">NIST '27</div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">B.Tech CSE</div>
                             </div>
                         </div>
 
@@ -181,7 +183,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                         <div className="absolute -inset-4 sm:-inset-6 lg:-inset-8 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[3.5rem] opacity-35 dark:opacity-45 blur-2xl sm:blur-3xl animate-pulse" />
 
                         {/* Profile Image Frame */}
-                        <div className="relative w-[86vw] h-[86vw] max-w-[360px] max-h-[360px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[480px] lg:h-[480px] xl:w-[530px] xl:h-[530px] rounded-[2.8rem] sm:rounded-[3.2rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
+                        <div className="relative w-[86vw] h-[86vw] max-w-[360px] max-h-[360px] sm:max-w-none sm:max-h-none sm:w-[400px] sm:h-[400px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] xl:w-[550px] xl:h-[550px] 2xl:w-[580px] 2xl:h-[580px] rounded-[2.8rem] sm:rounded-[3.5rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
                             <img
                                 src={profileImg}
                                 alt={profile.name}
