@@ -28,7 +28,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
         <section
             ref={ref}
             id="home"
-            className="min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-16 sm:pb-24 relative overflow-hidden"
+            className="scroll-mt-24 min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-16 sm:pb-24 relative overflow-hidden"
         >
             {/* Background Ambient Glows */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -39,10 +39,10 @@ export default function Hero({ onOpenContact, onOpenResume }) {
 
             <motion.div
                 style={{ opacity }}
-                className="max-w-7xl mx-auto z-10 px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center"
+                className="max-w-7xl mx-auto z-10 px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-12 gap-10 lg:gap-8 items-center"
             >
                 {/* Left Column (Content) */}
-                <div className="text-center lg:text-left lg:col-span-7 order-2 lg:order-1">
+                <div className="text-center lg:text-left lg:col-span-6 order-2 lg:order-1">
                     {/* Main Headline with Animated Role */}
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -92,6 +92,18 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                     >
                         <a
                             href="#projects"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const el = document.getElementById("projects");
+                                if (window.__lenis && el) {
+                                    window.__lenis.scrollTo(el, { offset: -80, duration: 1.2 });
+                                } else if (el) {
+                                    const navOffset = 80;
+                                    const elementPosition = el.getBoundingClientRect().top;
+                                    const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+                                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                                }
+                            }}
                             className="px-7 py-3.5 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white rounded-2xl font-semibold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all flex items-center gap-2 group cursor-pointer"
                         >
                             Explore Work
@@ -158,7 +170,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                 </div>
 
                 {/* Right Column (Hero Image) */}
-                <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center relative w-full">
+                <div className="lg:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end relative w-full">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -166,10 +178,10 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                         className="relative"
                     >
                         {/* Ambient Aura */}
-                        <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[3rem] opacity-30 dark:opacity-40 blur-2xl sm:blur-3xl animate-pulse" />
+                        <div className="absolute -inset-4 sm:-inset-6 lg:-inset-8 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[3.5rem] opacity-35 dark:opacity-45 blur-2xl sm:blur-3xl animate-pulse" />
 
                         {/* Profile Image Frame */}
-                        <div className="relative w-[86vw] h-[86vw] max-w-[360px] max-h-[360px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[490px] xl:h-[490px] rounded-[2.8rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
+                        <div className="relative w-[86vw] h-[86vw] max-w-[360px] max-h-[360px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[480px] lg:h-[480px] xl:w-[530px] xl:h-[530px] rounded-[2.8rem] sm:rounded-[3.2rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
                             <img
                                 src={profileImg}
                                 alt={profile.name}

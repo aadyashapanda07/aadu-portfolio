@@ -13,7 +13,7 @@ export default function Skills() {
         : skills.filter((c) => c.category === selectedCategory);
 
     return (
-        <section id="skills" className="py-24 relative">
+        <section id="skills" className="scroll-mt-24 py-24 relative">
             <div className="text-center mb-12">
                 <motion.div
                     initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}

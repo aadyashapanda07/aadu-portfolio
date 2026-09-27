@@ -37,6 +37,40 @@ export default function Navbar({ onOpenContact, onOpenResume }) {
         },
     ];
 
+    const handleNavClick = (e, link) => {
+        if (link.onClick) {
+            e.preventDefault();
+            setIsOpen(false);
+            link.onClick(e);
+            return;
+        }
+
+        if (link.href && link.href.startsWith("#")) {
+            e.preventDefault();
+            const targetId = link.href.substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            setIsOpen(false);
+
+            if (targetElement) {
+                setTimeout(() => {
+                    if (window.__lenis) {
+                        window.__lenis.scrollTo(targetElement, { offset: -80, duration: 1.2 });
+                    } else {
+                        const navOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth",
+                        });
+                    }
+                }, 80);
+            }
+        }
+    };
+
     return (
         <nav
             className={`fixed top-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[92%] max-w-3xl rounded-full ${scrolled
@@ -50,6 +84,7 @@ export default function Navbar({ onOpenContact, onOpenResume }) {
                     <div className="flex-shrink-0 flex items-center">
                         <a
                             href="#home"
+                            onClick={(e) => handleNavClick(e, { href: "#home" })}
                             className="flex items-center gap-2 group cursor-pointer"
                         >
                             <div className="w-8 h-8 rounded-full overflow-hidden border border-sky-500/40 group-hover:scale-105 transition-transform">
@@ -67,9 +102,7 @@ export default function Navbar({ onOpenContact, onOpenResume }) {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                onClick={(e) => {
-                                    if (link.onClick) link.onClick(e);
-                                }}
+                                onClick={(e) => handleNavClick(e, link)}
                                 className="px-3.5 py-1.5 rounded-full text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-all font-medium text-xs sm:text-sm cursor-pointer"
                             >
                                 {link.name}
@@ -117,11 +150,8 @@ export default function Navbar({ onOpenContact, onOpenResume }) {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={(e) => {
-                                        setIsOpen(false);
-                                        if (link.onClick) link.onClick(e);
-                                    }}
-                                    className="block px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                    onClick={(e) => handleNavClick(e, link)}
+                                    className="block px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                                 >
                                     {link.name}
                                 </a>

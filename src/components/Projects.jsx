@@ -12,7 +12,7 @@ export default function Projects() {
         : projects.filter(p => p.category === activeCategory);
 
     return (
-        <section id="projects" className="py-24 relative">
+        <section id="projects" className="scroll-mt-24 py-24 relative">
             <motion.div
                 initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
                 whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}

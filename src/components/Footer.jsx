@@ -4,7 +4,27 @@ import { openEmailClient } from "../lib/email";
 
 export default function Footer() {
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (window.__lenis) {
+            window.__lenis.scrollTo(0, { duration: 1.2 });
+        } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    };
+
+    const handleNavClick = (e, href) => {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            if (window.__lenis) {
+                window.__lenis.scrollTo(targetElement, { offset: -80, duration: 1.2 });
+            } else {
+                const navOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+        }
     };
 
     return (
@@ -28,10 +48,10 @@ export default function Footer() {
 
                     {/* Quick Nav */}
                     <div className="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">
-                        <a href="#home" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Home</a>
-                        <a href="#about" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">About</a>
-                        <a href="#skills" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Skills</a>
-                        <a href="#projects" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Projects</a>
+                        <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors cursor-pointer">Home</a>
+                        <a href="#about" onClick={(e) => handleNavClick(e, "#about")} className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors cursor-pointer">About</a>
+                        <a href="#skills" onClick={(e) => handleNavClick(e, "#skills")} className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors cursor-pointer">Skills</a>
+                        <a href="#projects" onClick={(e) => handleNavClick(e, "#projects")} className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors cursor-pointer">Projects</a>
                     </div>
 
                     {/* Socials & Back To Top */}
