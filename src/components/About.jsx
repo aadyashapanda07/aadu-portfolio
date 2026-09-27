@@ -4,7 +4,7 @@ import { education, profile, highlights } from "../data";
 
 export default function About() {
     return (
-        <section id="about" className="py-24 relative">
+        <section id="about" className="pt-16 sm:pt-24 pb-24 relative">
             <motion.div
                 initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
                 whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}

@@ -12,8 +12,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
         offset: ["start start", "end start"],
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 0.9], [1, 0.3]);
 
     // Rotating title roles
     const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -29,7 +28,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
         <section
             ref={ref}
             id="home"
-            className="min-h-screen flex items-center justify-center pt-28 pb-16 relative overflow-hidden"
+            className="min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-16 sm:pb-24 relative overflow-hidden"
         >
             {/* Background Ambient Glows */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -39,7 +38,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
             </div>
 
             <motion.div
-                style={{ y, opacity }}
+                style={{ opacity }}
                 className="max-w-7xl mx-auto z-10 px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center"
             >
                 {/* Left Column (Content) */}
@@ -123,17 +122,17 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="pt-6 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-6"
                     >
-                        <div className="grid grid-cols-3 gap-6 sm:gap-8 text-center sm:text-left">
+                        <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center sm:text-left w-full sm:w-auto">
                             <div>
-                                <div className="text-2xl font-bold font-heading text-slate-900 dark:text-white">6+</div>
+                                <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 dark:text-white">6+</div>
                                 <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Projects Built</div>
                             </div>
                             <div>
-                                <div className="text-2xl font-bold font-heading text-sky-600 dark:text-sky-400">15+</div>
+                                <div className="text-2xl sm:text-3xl font-bold font-heading text-sky-600 dark:text-sky-400">15+</div>
                                 <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Tech Skills</div>
                             </div>
                             <div>
-                                <div className="text-2xl font-bold font-heading text-slate-900 dark:text-white">NIST '27</div>
+                                <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 dark:text-white">NIST '27</div>
                                 <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">B.Tech CSE</div>
                             </div>
                         </div>
@@ -159,7 +158,7 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                 </div>
 
                 {/* Right Column (Hero Image) */}
-                <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center relative">
+                <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center relative w-full">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -167,14 +166,14 @@ export default function Hero({ onOpenContact, onOpenResume }) {
                         className="relative"
                     >
                         {/* Ambient Aura */}
-                        <div className="absolute -inset-4 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[3rem] opacity-30 dark:opacity-40 blur-2xl animate-pulse" />
+                        <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-tr from-sky-500 to-indigo-600 rounded-[3rem] opacity-30 dark:opacity-40 blur-2xl sm:blur-3xl animate-pulse" />
 
                         {/* Profile Image Frame */}
-                        <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[26rem] md:h-[26rem] lg:w-[28rem] lg:h-[28rem] xl:w-[30rem] xl:h-[30rem] rounded-[2.8rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
+                        <div className="relative w-[86vw] h-[86vw] max-w-[360px] max-h-[360px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[490px] xl:h-[490px] rounded-[2.8rem] overflow-hidden border-4 border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/10 backdrop-blur-sm">
                             <img
                                 src={profileImg}
                                 alt={profile.name}
-                                className="w-full h-full object-cover object-[50%_25%] scale-115 transition-transform duration-700 hover:scale-120"
+                                className="w-full h-full object-cover object-[50%_20%] scale-105 transition-transform duration-700 hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
                         </div>

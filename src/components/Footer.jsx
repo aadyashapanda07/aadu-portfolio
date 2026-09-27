@@ -61,10 +61,11 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-500 gap-3">
-                    <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
-                    <p className="flex items-center gap-1">
-                        Crafted with <Heart size={13} className="text-red-500 fill-red-500 inline" /> using React 19, Tailwind CSS & Framer Motion
+                <div className="pt-6 flex items-center justify-center text-center">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium tracking-wide flex items-center justify-center gap-1.5">
+                        <span>© since 2024 made by</span>
+                        <Heart size={14} className="text-red-500 fill-red-500 inline mx-0.5" />
+                        <span className="font-semibold text-slate-700 dark:text-slate-300">aadyasha panda</span>
                     </p>
                 </div>
             </div>
