@@ -4,9 +4,11 @@ import { MessageCircle, X, Send, User, Sparkles, RotateCcw } from "lucide-react"
 import { sendMessage, resetChat } from "../lib/gemini";
 import { chatSuggestions } from "../data";
 
+import { getPersonalBotResponse } from "../lib/personalBot";
+
 const WELCOME_MESSAGE = {
     role: "ai",
-    text: "Hey there! 👋 I'm Aadyasha's AI assistant. Ask me anything about her projects, technical skills, education at NIST, or internship availability!",
+    text: "Hey there! 👋 I'm Aadyasha's personal AI chatbot.\n\nAsk me anything about her projects, technical skills, AI/ML internship at csm.tech, NIST University, or how to get in touch!",
 };
 
 export default function Chatbot() {
@@ -43,12 +45,14 @@ export default function Chatbot() {
         try {
             const response = await sendMessage(trimmed);
             setMessages((prev) => [...prev, { role: "ai", text: response }]);
-        } catch {
+        } catch (err) {
+            console.warn("Chat error, using personal bot fallback:", err);
+            const fallbackResponse = getPersonalBotResponse(trimmed);
             setMessages((prev) => [
                 ...prev,
                 {
                     role: "ai",
-                    text: "Sorry, I ran into a network hiccup. You can also reach out to Aadyasha directly at aadyashapanda07@gmail.com!",
+                    text: fallbackResponse,
                 },
             ]);
         } finally {
@@ -117,9 +121,10 @@ export default function Chatbot() {
                                         <span>Aadyasha's AI</span>
                                         <Sparkles size={13} className="text-sky-500" />
                                     </h3>
-                                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                                        Powered by Gemini
-                                    </p>
+                                    <div className="flex items-center gap-1.5 text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        <span>Personal Assistant • Active</span>
+                                    </div>
                                 </div>
                             </div>
 

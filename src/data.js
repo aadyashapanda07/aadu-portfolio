@@ -260,6 +260,8 @@ export const highlights = [
 export const chatSuggestions = [
     "Tell me about your top projects 🚀",
     "What is your tech stack? 🛠️",
+    "Work Experience & Internships 💼",
     "Tell me about your first project! ⭐",
-    "How can I contact or hire you? 💼"
+    "Education & NIST '27 🎓",
+    "How can I contact or hire you? 📞"
 ];
