@@ -111,7 +111,7 @@ export const projects = [
         tech: ["Next.js 14", "Python FastAPI", "OpenAI GPT-4", "Pinecone", "Tailwind CSS"],
         link: "https://nexus-ai-bice-one.vercel.app/",
         github: "https://github.com/aadyashapanda07/-Nexus-AI",
-        img: "/projects/nexus.png",
+        img: "/projects/nexus-real.png",
         results: "Reduced project delivery cycle time by 40% for beta teams with predictive task scheduling.",
         features: [
             "AI-driven task duration and sprint effort prediction",
@@ -128,7 +128,7 @@ export const projects = [
         tech: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Node.js", "Lucide Icons"],
         link: "https://campus2corporate-pearl.vercel.app/",
         github: "https://github.com/aadyashapanda07/campus2corporate",
-        img: "/projects/echo.png",
+        img: "/projects/campus2corporate-real.png",
         results: "Complete recruitment readiness platform featuring ATS scoring, coding IDE, and mock interviews.",
         features: [
             "AI Resume Analyzer with ATS score benchmark and keyword suggestions",
@@ -145,7 +145,7 @@ export const projects = [
         tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Chart.js"],
         link: "https://finai-platform-kappa.vercel.app/",
         github: "https://github.com/aadyashapanda07/finai-platform",
-        img: "/projects/vortex.png",
+        img: "/projects/finai-real.png",
         results: "Seamlessly parses receipts and delivers actionable spending anomaly alerts in <2 seconds.",
         features: [
             "Automated transaction classification using custom rule & AI heuristics",
@@ -162,7 +162,7 @@ export const projects = [
         tech: ["Three.js", "WebGL", "GLSL Shaders", "JavaScript", "HTML5 Canvas"],
         link: "https://ramayana-3d.vercel.app/",
         github: "https://github.com/aadyashapanda07/ramayana-3d",
-        img: "/projects/nexus.png",
+        img: "/projects/ramayana-real.png",
         results: "Delivers smooth 60 FPS scroll-driven 3D camera flight paths with zero external model bloat.",
         features: [
             "Procedural terrain generation with custom lighting and fog shaders",
@@ -181,7 +181,7 @@ export const projects = [
         tech: ["JavaScript", "Fetch API", "HTML5", "CSS3", "Exchange Rate API"],
         link: "https://currency-converter-five-eta.vercel.app/",
         github: "https://github.com/aadyashapanda07/currency-converter",
-        img: "/projects/vortex.png",
+        img: "/projects/currency-real.png",
         results: "My foundational milestone that sparked my passion for frontend engineering and modern web development.",
         features: [
             "Real-time currency exchange rates via REST API integration",
