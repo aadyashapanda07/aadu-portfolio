@@ -34,7 +34,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-full overflow-hidden border border-sky-500/40">
-                            <img src="/logo.png" alt="Aadyasha Logo" className="w-full h-full object-cover" />
+                            <img src="/logo.png?v=2" alt="Aadyasha Logo" className="w-full h-full object-cover" />
                         </div>
                         <div>
                             <span className="font-heading font-bold text-base text-slate-900 dark:text-white">

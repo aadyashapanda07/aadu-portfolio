@@ -88,7 +88,7 @@ export default function Navbar({ onOpenContact, onOpenResume }) {
                             className="flex items-center gap-2 group cursor-pointer"
                         >
                             <div className="w-8 h-8 rounded-full overflow-hidden border border-sky-500/40 group-hover:scale-105 transition-transform">
-                                <img src="/logo.png" alt="Aadyasha Logo" className="w-full h-full object-cover" />
+                                <img src="/logo.png?v=2" alt="Aadyasha Logo" className="w-full h-full object-cover" />
                             </div>
                             <span className="font-heading font-bold text-sm tracking-tight text-slate-900 dark:text-white hidden sm:inline-block">
                                 Aadyasha<span className="text-sky-600 dark:text-sky-400">.</span>

@@ -89,7 +89,7 @@ export default function Chatbot() {
                         id="chatbot-bubble"
                     >
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/80">
-                            <img src="/logo.png" alt="Aadyasha AI" className="w-full h-full object-cover" />
+                            <img src="/logo.png?v=2" alt="Aadyasha AI" className="w-full h-full object-cover" />
                         </div>
                         {/* Tooltip on hover */}
                         <span className="absolute right-16 px-3 py-1.5 rounded-xl bg-slate-900/90 text-white text-xs font-medium whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -114,7 +114,7 @@ export default function Chatbot() {
                         <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-850/70">
                             <div className="flex items-center gap-3">
                                 <div className="w-9 h-9 rounded-full overflow-hidden border border-sky-500/40 shrink-0">
-                                    <img src="/logo.png" alt="Aadyasha AI" className="w-full h-full object-cover" />
+                                    <img src="/logo.png?v=2" alt="Aadyasha AI" className="w-full h-full object-cover" />
                                 </div>
                                 <div>
                                     <h3 className="font-heading font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
@@ -167,7 +167,7 @@ export default function Chatbot() {
                                         </div>
                                     ) : (
                                         <div className="w-7 h-7 rounded-full overflow-hidden border border-sky-400/40 shrink-0 mt-0.5 shadow-sm">
-                                            <img src="/logo.png" alt="AI" className="w-full h-full object-cover" />
+                                            <img src="/logo.png?v=2" alt="AI" className="w-full h-full object-cover" />
                                         </div>
                                     )}
 
@@ -187,7 +187,7 @@ export default function Chatbot() {
                             {isTyping && (
                                 <div className="flex gap-2.5">
                                     <div className="w-7 h-7 rounded-full overflow-hidden border border-sky-400/40 shrink-0 mt-0.5">
-                                        <img src="/logo.png" alt="AI" className="w-full h-full object-cover" />
+                                        <img src="/logo.png?v=2" alt="AI" className="w-full h-full object-cover" />
                                     </div>
                                     <div className="bg-slate-100 dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/50 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5">
                                         <span className="typing-dot" />
